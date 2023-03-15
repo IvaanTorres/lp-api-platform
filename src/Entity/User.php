@@ -98,3 +98,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 }
+
+
+// All pokemon
+// curl -XGET -H "Content-type: application/json" 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0'
+
+// One pokemon
+// curl -XGET -H "Content-type: application/json" 'https://pokeapi.co/api/v2/pokemon/1'
