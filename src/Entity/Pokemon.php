@@ -8,35 +8,46 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read']]
+)]
 class Pokemon
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read'])]
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Type::class, mappedBy: 'pokemon', cascade: ['persist'])]
+    #[Groups(['read'])]
     private Collection $types;
 
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $pokemonOrder = null;
 
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $height = null;
 
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $weight = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['read'])]
     private ?string $imagePath = null;
 
     #[ORM\ManyToMany(targetEntity: Ability::class, inversedBy: 'pokemon', cascade: ['persist'])]
+    #[Groups(['read'])]
     private Collection $abilities;
 
     public function __construct()

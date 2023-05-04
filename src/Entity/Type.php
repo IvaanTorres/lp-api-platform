@@ -7,6 +7,7 @@ use App\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TypeRepository::class)]
 #[ApiResource]
@@ -15,12 +16,14 @@ class Type
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\ManyToMany(targetEntity: Pokemon::class, inversedBy: 'types')]
     private Collection $pokemon;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read'])]
     private ?string $name = null;
 
     public function __construct()

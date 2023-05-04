@@ -85,6 +85,8 @@ class DataImportCommand extends Command
                         $newAbility->setEffectChangeDescription($currAbility['effect_changes'][0]['effect_entries'][1]['effect']);
                     }
                     $newPokemon->addAbility($newAbility);
+                } else {
+                    $newPokemon->addAbility($abilityInDb);
                 }
             }
 
@@ -94,6 +96,8 @@ class DataImportCommand extends Command
                     $newType = new Type();
                     $newType->setName($type['type']['name']);
                     $newPokemon->addType($newType);
+                } else {
+                    $newPokemon->addType($typeInDb);
                 }
             }
 
